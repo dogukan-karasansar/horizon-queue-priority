@@ -198,29 +198,39 @@ return [
     'environments' => [
         'production' => [
             'supervisor-1' => [
+                'maxProcesses' => 10,
+                'balanceMaxShift' => 1,
+                'balanceCooldown' => 3,
+                'balance' => 'auto',
+                'connection' => 'redis',
+                'queue' => ['default'],
+            ],
+            'supervisor-2' => [
                 'maxProcesses' => 15,
                 'balanceMaxShift' => 1,
                 'balanceCooldown' => 3,
                 'balance' => 'auto',
                 'connection' => 'redis',
-                'queue' => ['default', 'custome_queue'],
-                'processes' => [
-                    'default' => 5,
-                    'custome_queue' => 10
-                ]
+                'queue' => ['custome_queue'],
             ],
         ],
 
         'local' => [
             'supervisor-1' => [
-                'maxProcesses' => 3,
-                'connection' => 'redis',
+                'maxProcesses' => 10,
+                'balanceMaxShift' => 1,
+                'balanceCooldown' => 3,
                 'balance' => 'auto',
-                'queue' => ['default', 'custome_queue'],
-                'processes' => [
-                    'default' => 5,
-                    'custome_queue' => 10
-                ]
+                'connection' => 'redis',
+                'queue' => ['default'],
+            ],
+            'supervisor-2' => [
+                'maxProcesses' => 15,
+                'balanceMaxShift' => 1,
+                'balanceCooldown' => 3,
+                'balance' => 'auto',
+                'connection' => 'redis',
+                'queue' => ['custome_queue'],
             ],
         ],
     ],
